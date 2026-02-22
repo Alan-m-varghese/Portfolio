@@ -1,344 +1,934 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7235431431642076"
-     crossorigin="anonymous"></script>
-<meta name="google-adsense-account" content="ca-pub-7235431431642076">
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
-  </head>
-  <body>
-    <nav id="desktop-nav">
-      <div class="logo">Alan M Varghese</div>
-      <div>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PORTFOLIO 2025 — Content Creator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:      #050A12;
+      --navy:    #071525;
+      --blue:    #0B2035;
+      --blue2:   #0D2E4A;
+      --red:     #C0272D;
+      --red2:    #E03030;
+      --red-dim: #8B1A1F;
+      --cyan:    #4FC3F7;
+      --cyan2:   #29B6F6;
+      --white:   #FFFFFF;
+      --off:     #D0D8E4;
+      --gray:    #7A8FA6;
+      --lgray:   #A8BCD4;
+      --border:  #1A3050;
+      --card:    #0C1E30;
+    }
+
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      background:var(--bg);
+      color:var(--white);
+      font-family:'Rajdhani',sans-serif;
+      overflow-x:hidden;
+    }
+
+    /* ── GRAIN ── */
+    body::before{
+      content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0.022;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size:160px 160px;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━
+       SCROLL PROGRESS BAR
+    ━━━━━━━━━━━━━━━━━ */
+    #progress-bar{
+      position:fixed;top:0;left:0;height:2px;
+      background:linear-gradient(to right,var(--red2),var(--cyan2));
+      z-index:10000;width:0%;
+      transition:width 0.08s linear;
+      box-shadow:0 0 8px rgba(79,195,247,0.5);
+    }
+
+    /* ━━━━━━━━━━━━━━━━━
+       STICKY NAV
+    ━━━━━━━━━━━━━━━━━ */
+    #sticky-nav{
+      position:fixed;top:2px;left:0;right:0;z-index:500;
+      background:rgba(5,10,18,0.92);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(26,48,80,0.6);
+      transform:translateY(-100%);
+      transition:transform 0.4s cubic-bezier(0.23,1,0.32,1);
+    }
+    #sticky-nav.visible{transform:translateY(0);}
+    .nav-inner{
+      max-width:1100px;margin:0 auto;
+      padding:0 28px;height:58px;
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .brand-mark{
+      font-family:'Cinzel',serif;
+      font-size:20px;font-weight:700;color:var(--off);
+      text-decoration:none;cursor:pointer;opacity:0.85;
+      transition:opacity 0.2s;
+    }
+    .brand-mark:hover{opacity:1;color:var(--cyan);}
+    .nav-tabs{display:flex;gap:4px;}
+    .nav-tab{
+      font-family:'Share Tech Mono',monospace;
+      font-size:10px;letter-spacing:0.15em;
+      text-transform:uppercase;color:var(--gray);
+      padding:6px 16px;border-radius:3px;
+      border:1px solid transparent;
+      background:transparent;cursor:pointer;
+      transition:all 0.25s;
+    }
+    .nav-tab:hover{color:var(--lgray);border-color:var(--border);}
+    .nav-tab.active{
+      background:var(--cyan2);color:var(--bg);
+      border-color:var(--cyan2);font-weight:700;
+    }
+    /* Scroll indicator dots */
+    .scroll-dots{
+      display:flex;flex-direction:column;gap:6px;align-items:center;
+    }
+    .scroll-dot{
+      width:5px;height:5px;border-radius:50%;
+      background:var(--border);cursor:pointer;
+      transition:all 0.3s;
+    }
+    .scroll-dot.active{background:var(--cyan2);transform:scale(1.4);}
+
+    /* ── SCAN LINE ── */
+    .scanline{
+      position:fixed;top:0;left:0;right:0;height:2px;
+      background:linear-gradient(to right,transparent,rgba(79,195,247,0.15),transparent);
+      z-index:9998;pointer-events:none;
+      animation:scanMove 8s linear infinite;
+    }
+    @keyframes scanMove{0%{top:-4px;}100%{top:100vh;}}
+
+    /* ── SCROLL-TO-TOP ── */
+    #totop{
+      position:fixed;bottom:30px;right:24px;z-index:600;
+      width:40px;height:40px;border-radius:50%;
+      background:rgba(41,182,246,0.15);
+      border:1px solid var(--cyan2);
+      color:var(--cyan2);font-size:18px;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;transition:all 0.3s;
+      opacity:0;pointer-events:none;
+      backdrop-filter:blur(8px);
+    }
+    #totop.show{opacity:1;pointer-events:all;}
+    #totop:hover{background:var(--cyan2);color:var(--bg);}
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION BASE STYLES
+    ━━━━━━━━━━━━━━━━━━━━━━━━ */
+    section{min-height:100vh;position:relative;overflow:hidden;}
+
+    /* Divider between sections */
+    .section-divider{
+      height:1px;
+      background:linear-gradient(to right,transparent,var(--cyan),transparent);
+      opacity:0.25;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 1 — SPLASH
+    ━━━━━━━━━━━━━━━━━━━━━━━━ */
+    #splash{
+      background:
+        radial-gradient(ellipse 80% 70% at 70% 40%,rgba(11,32,53,0.85) 0%,transparent 65%),
+        radial-gradient(ellipse 50% 60% at 15% 80%,rgba(192,39,45,0.07) 0%,transparent 55%),
+        linear-gradient(160deg,#050A12 0%,#071525 55%,#050A12 100%);
+      display:flex;flex-direction:column;
+    }
+    .splash-topbar{
+      padding:26px 36px;
+      display:flex;justify-content:space-between;align-items:center;
+    }
+    .splash-body{
+      flex:1;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      padding:20px 24px 80px;position:relative;
+    }
+    .splash-glow-a{
+      position:absolute;top:-80px;right:-80px;
+      width:480px;height:480px;border-radius:50%;
+      background:radial-gradient(circle,rgba(79,195,247,0.05),transparent 70%);
+      pointer-events:none;
+    }
+    .splash-glow-b{
+      position:absolute;bottom:-60px;left:-60px;
+      width:380px;height:380px;border-radius:50%;
+      background:radial-gradient(circle,rgba(192,39,45,0.06),transparent 70%);
+      pointer-events:none;
+    }
+    .splash-hero{
+      display:flex;align-items:flex-end;gap:28px;
+      margin-bottom:24px;flex-wrap:wrap;justify-content:center;
+    }
+    .person-circle{
+      position:relative;width:185px;height:185px;flex-shrink:0;
+    }
+    .person-circle-bg{
+      position:absolute;inset:0;border-radius:50%;
+      background:radial-gradient(circle at 40% 60%,var(--red) 0%,var(--red-dim) 55%,#2a0a0c 100%);
+      overflow:hidden;
+    }
+    .person-icon{
+      font-size:108px;
+      position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+      opacity:0.85;
+    }
+    .splash-title-wrap{
+      display:flex;flex-direction:column;justify-content:flex-end;
+    }
+    .splash-title-row{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;}
+    .splash-title{
+      font-family:'Cinzel',serif;
+      font-size:clamp(40px,9vw,88px);
+      font-weight:900;letter-spacing:0.04em;
+      color:var(--off);line-height:0.95;
+      text-shadow:0 0 40px rgba(79,195,247,0.08);
+    }
+    .splash-year{
+      font-family:'Cinzel',serif;
+      font-size:clamp(26px,5vw,50px);
+      font-weight:700;color:var(--lgray);
+      letter-spacing:0.08em;
+    }
+    .splash-role{
+      display:flex;align-items:center;gap:10px;
+      margin-bottom:44px;margin-top:14px;
+      font-family:'Share Tech Mono',monospace;
+      font-size:12px;letter-spacing:0.18em;
+      text-transform:uppercase;color:var(--lgray);
+    }
+    .role-dot{
+      width:10px;height:10px;
+      background:var(--cyan);
+      clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+      animation:rotateDot 4s linear infinite;
+      flex-shrink:0;
+    }
+    @keyframes rotateDot{to{transform:rotate(360deg);}}
+    .splash-menu{
+      display:flex;flex-direction:column;align-items:center;gap:2px;
+    }
+    .splash-menu-item{
+      font-family:'Share Tech Mono',monospace;
+      font-size:13px;letter-spacing:0.22em;text-transform:uppercase;
+      color:var(--lgray);padding:9px 32px;
+      border:none;background:transparent;cursor:pointer;
+      transition:all 0.25s;position:relative;
+    }
+    .splash-menu-item::before{
+      content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+      width:0;height:1px;background:var(--cyan);transition:width 0.3s;
+    }
+    .splash-menu-item:hover{color:var(--white);letter-spacing:0.28em;}
+    .splash-menu-item:hover::before{width:16px;}
+    .splash-menu-item.start-btn{color:var(--cyan2);}
+    /* Scroll hint */
+    .scroll-hint{
+      position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+      display:flex;flex-direction:column;align-items:center;gap:8px;
+      font-family:'Share Tech Mono',monospace;
+      font-size:9px;letter-spacing:0.2em;color:var(--gray);
+      animation:bounceY 2s ease-in-out infinite;
+    }
+    .scroll-hint-arrow{font-size:18px;color:var(--cyan);opacity:0.5;}
+    @keyframes bounceY{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(6px);}}
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 2 — PROFILE
+    ━━━━━━━━━━━━━━━━━━━━━━━━ */
+    #profile{
+      background:
+        radial-gradient(ellipse 70% 80% at 15% 50%,rgba(11,32,53,0.65) 0%,transparent 55%),
+        linear-gradient(160deg,#050A12 0%,#071830 55%,#050A12 100%);
+      display:flex;flex-direction:column;
+    }
+    .profile-section-label{
+      padding:28px 36px 0;
+      display:flex;align-items:center;gap:16px;
+    }
+    .section-tag{
+      font-family:'Share Tech Mono',monospace;
+      font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+      color:var(--cyan2);border:1px solid var(--cyan2);
+      padding:4px 12px;border-radius:2px;
+    }
+    .section-tag-line{flex:1;height:1px;background:linear-gradient(to right,var(--cyan2),transparent);opacity:0.3;}
+    .profile-body{
+      flex:1;display:grid;
+      grid-template-columns:260px 1fr;
+      gap:0;
+    }
+    .profile-left{
+      display:flex;flex-direction:column;
+      align-items:center;padding:24px 20px 0;
+    }
+    .profile-hello{
+      font-family:'Share Tech Mono',monospace;
+      font-size:9px;letter-spacing:0.2em;
+      text-transform:uppercase;color:var(--gray);
+      align-self:flex-start;padding-left:8px;margin-bottom:3px;
+    }
+    .profile-name{
+      font-family:'Cinzel',serif;
+      font-size:clamp(14px,2vw,20px);font-weight:700;
+      letter-spacing:0.06em;color:var(--off);
+      align-self:flex-start;padding-left:8px;margin-bottom:14px;
+    }
+    .profile-person{
+      width:100%;flex:1;
+      position:relative;display:flex;align-items:flex-end;justify-content:center;
+      min-height:300px;
+    }
+    .profile-glow{
+      position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+      width:200px;height:200px;border-radius:50%;
+      background:radial-gradient(circle,rgba(79,195,247,0.16),transparent 70%);
+      pointer-events:none;
+    }
+    .profile-person-icon{
+      font-size:200px;position:relative;z-index:2;line-height:1;
+      filter:drop-shadow(0 0 20px rgba(79,195,247,0.12));
+    }
+    .profile-right{
+      padding:32px 40px;
+      border-left:1px solid var(--border);
+      overflow-y:auto;
+    }
+    .sec-h{
+      font-family:'Cinzel',serif;
+      font-size:clamp(14px,2vw,20px);font-weight:700;
+      letter-spacing:0.08em;color:var(--off);
+      margin-bottom:12px;
+      display:flex;align-items:center;gap:12px;
+    }
+    .sec-h::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--border),transparent);}
+    .about-text{
+      font-size:13px;line-height:1.9;color:var(--lgray);
+      font-weight:400;letter-spacing:0.02em;
+      text-transform:uppercase;margin-bottom:26px;
+    }
+    .skills-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px;}
+    .skill-pill{
+      width:46px;height:46px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:22px;border:1px solid var(--border);
+      background:var(--card);cursor:default;
+      transition:all 0.25s;position:relative;
+    }
+    .skill-pill:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:0 0 12px rgba(79,195,247,0.2);}
+    .skill-pill span{
+      position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);
+      font-family:'Share Tech Mono',monospace;font-size:8px;
+      color:var(--cyan);letter-spacing:0.06em;white-space:nowrap;
+      opacity:0;transition:opacity 0.2s;pointer-events:none;
+    }
+    .skill-pill:hover span{opacity:1;}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:22px;}
+    .info-h{font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:0.1em;color:var(--off);margin-bottom:8px;}
+    .info-sub{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--cyan2);letter-spacing:0.08em;margin-bottom:4px;}
+    .info-txt{font-size:12px;line-height:1.7;color:var(--lgray);text-transform:uppercase;letter-spacing:0.02em;}
+    .lang-list{display:flex;flex-direction:column;gap:10px;}
+    .lang-item{display:flex;align-items:center;gap:12px;}
+    .lang-name{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--lgray);width:76px;flex-shrink:0;}
+    .lang-bar{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden;}
+    .lang-fill{height:100%;background:linear-gradient(to right,var(--cyan2),var(--cyan));border-radius:2px;width:0%;transition:width 1.4s cubic-bezier(0.22,1,0.36,1);}
+    .lang-pct{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--cyan);width:32px;text-align:right;}
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 3 — PROJECT
+    ━━━━━━━━━━━━━━━━━━━━━━━━ */
+    #project{
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%,rgba(11,32,53,0.75) 0%,transparent 55%),
+        linear-gradient(180deg,#050A12 0%,#071525 100%);
+      display:flex;flex-direction:column;
+    }
+    .project-inner{padding:32px 36px;flex:1;}
+    .project-head{
+      display:flex;align-items:baseline;gap:14px;margin-bottom:30px;flex-wrap:wrap;
+    }
+    .project-head h2{
+      font-family:'Cinzel',serif;
+      font-size:clamp(20px,4vw,36px);font-weight:700;letter-spacing:0.06em;color:var(--off);
+    }
+    .no-ai-badge{
+      font-family:'Share Tech Mono',monospace;font-size:10px;
+      letter-spacing:0.2em;text-transform:uppercase;
+      color:var(--cyan);border:1px solid var(--cyan);padding:3px 10px;border-radius:2px;
+    }
+    .project-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      grid-auto-rows:130px;
+      gap:8px;
+    }
+    .proj-item{
+      border-radius:6px;overflow:hidden;position:relative;
+      cursor:pointer;background:var(--card);border:1px solid var(--border);
+      transition:all 0.3s;
+    }
+    .proj-item:hover{border-color:rgba(79,195,247,0.35);transform:scale(1.02);z-index:2;box-shadow:0 8px 32px rgba(0,0,0,0.5);}
+    .proj-item.tall{grid-row:span 2;}
+    .proj-item.wide{grid-column:span 2;}
+    .proj-item:nth-child(1){background:linear-gradient(135deg,#0d1520,#1a0a00);}
+    .proj-item:nth-child(2){background:linear-gradient(135deg,#111,#2a2a2a);}
+    .proj-item:nth-child(3){background:linear-gradient(135deg,#0a0a15,#1a0a1a);}
+    .proj-item:nth-child(4){background:linear-gradient(135deg,#050505,#101010);}
+    .proj-item:nth-child(5){background:linear-gradient(135deg,#0d0d20,#001530);}
+    .proj-item:nth-child(6){background:linear-gradient(135deg,#100010,#200020);}
+    .proj-item:nth-child(7){background:linear-gradient(135deg,#0d0d15,#1a1a00);}
+    .proj-item:nth-child(8){background:linear-gradient(135deg,#150010,#2d0020);}
+    .proj-item:nth-child(9){background:linear-gradient(135deg,#100a0a,#200000);}
+    .proj-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;opacity:0.3;filter:grayscale(0.5);transition:all 0.3s;}
+    .proj-item:hover .proj-inner{opacity:0.7;filter:grayscale(0);}
+    .proj-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(5,10,18,0.8) 100%);opacity:0;transition:opacity 0.3s;}
+    .proj-item:hover .proj-overlay{opacity:1;}
+    .proj-lbl{position:absolute;bottom:7px;left:9px;font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);opacity:0;transition:opacity 0.3s;}
+    .proj-item:hover .proj-lbl{opacity:1;}
+    .proj-logos{display:flex;gap:12px;margin-top:16px;align-items:center;}
+    .proj-logo{font-family:'Cinzel',serif;font-size:26px;font-weight:900;color:var(--off);opacity:0.65;cursor:default;transition:opacity 0.2s;}
+    .proj-logo:hover{opacity:1;}
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 4 — CONTACT
+    ━━━━━━━━━━━━━━━━━━━━━━━━ */
+    #contact{
+      background:
+        radial-gradient(ellipse 60% 60% at 20% 50%,rgba(11,32,53,0.55) 0%,transparent 55%),
+        radial-gradient(ellipse 50% 40% at 80% 70%,rgba(5,10,18,0.9) 0%,transparent 55%),
+        linear-gradient(160deg,#050A12 0%,#071525 100%);
+      display:flex;flex-direction:column;
+    }
+    .contact-grid{
+      flex:1;display:grid;grid-template-columns:300px 1fr;gap:0;
+    }
+    .contact-left{
+      padding:36px 24px;border-right:1px solid var(--border);
+      display:flex;flex-direction:column;
+    }
+    .contact-label{
+      font-family:'Share Tech Mono',monospace;font-size:10px;
+      letter-spacing:0.22em;text-transform:uppercase;color:var(--gray);margin-bottom:20px;
+    }
+    .contact-photo{
+      width:128px;height:128px;border-radius:50%;
+      background:linear-gradient(135deg,var(--navy),var(--blue2));
+      border:2px solid var(--border);
+      margin:0 auto 16px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:68px;position:relative;overflow:hidden;
+      box-shadow:0 0 28px rgba(79,195,247,0.08);
+    }
+    .contact-name{font-family:'Cinzel',serif;font-size:14px;font-weight:700;letter-spacing:0.08em;color:var(--off);text-align:center;margin-bottom:3px;}
+    .contact-handle{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray);letter-spacing:0.1em;text-align:center;margin-bottom:26px;}
+    .social-list{display:flex;flex-direction:column;gap:10px;}
+    .social-item{
+      display:flex;align-items:center;gap:12px;
+      padding:9px 12px;border-radius:8px;border:1px solid transparent;
+      cursor:pointer;transition:all 0.25s;text-decoration:none;
+    }
+    .social-item:hover{background:rgba(79,195,247,0.05);border-color:rgba(79,195,247,0.2);}
+    .soc-icon{
+      width:34px;height:34px;border-radius:50%;border:1px solid var(--border);
+      background:var(--card);display:flex;align-items:center;justify-content:center;
+      font-size:16px;flex-shrink:0;
+    }
+    .soc-icon.ig{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);}
+    .soc-icon.tt{background:#111;}
+    .soc-icon.yt{background:#FF0000;}
+    .soc-icon.pi{background:#E60023;}
+    .soc-name{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--lgray);}
+    .contact-right{
+      position:relative;display:flex;flex-direction:column;
+      justify-content:center;align-items:flex-start;
+      padding:40px 52px;overflow:hidden;
+    }
+    .thankyou{
+      font-family:'Cinzel',serif;
+      font-size:clamp(42px,8vw,100px);font-weight:900;
+      line-height:0.9;
+      color:transparent;
+      -webkit-text-stroke:1px rgba(168,188,212,0.3);
+      letter-spacing:0.03em;user-select:none;
+    }
+    .thankyou-year{
+      font-family:'Cinzel',serif;
+      font-size:clamp(42px,8vw,100px);font-weight:900;
+      line-height:0.9;
+      color:transparent;
+      -webkit-text-stroke:1px rgba(168,188,212,0.3);
+      letter-spacing:0.03em;
+    }
+    .deco-hand{position:absolute;bottom:-5px;right:22px;font-size:80px;opacity:0.45;transform:rotate(-15deg);filter:drop-shadow(0 0 15px rgba(79,195,247,0.18));}
+    .film-deco{position:absolute;right:130px;bottom:18px;font-size:48px;opacity:0.1;filter:grayscale(1);}
+    .prev-works{
+      border-top:1px solid var(--border);
+      padding:18px 32px 28px;
+      display:flex;gap:14px;flex-wrap:wrap;
+    }
+    .prev-card{
+      background:var(--card);border:1px solid var(--border);border-radius:6px;
+      overflow:hidden;cursor:pointer;transition:all 0.25s;flex-shrink:0;
+    }
+    .prev-card:hover{border-color:rgba(79,195,247,0.3);transform:translateY(-3px);}
+    .prev-img{
+      width:130px;height:82px;display:flex;align-items:center;
+      justify-content:center;font-size:26px;opacity:0.25;
+    }
+    .prev-card:nth-child(1) .prev-img{background:linear-gradient(135deg,#0d0d1a,#1a1a30);}
+    .prev-card:nth-child(2) .prev-img{background:linear-gradient(135deg,#1a1000,#201800);}
+    .prev-card:nth-child(3) .prev-img{background:linear-gradient(135deg,#0d0d0d,#1a1a1a);}
+    .prev-yr{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gray);letter-spacing:0.1em;padding:6px 10px;}
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━
+       SCROLL ANIMATIONS
+    ━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .rv{
+      opacity:0;transform:translateY(32px);
+      transition:opacity 0.75s ease, transform 0.75s ease;
+    }
+    .rv.in{opacity:1;transform:translateY(0);}
+    .rv-left{opacity:0;transform:translateX(-32px);transition:opacity 0.75s ease,transform 0.75s ease;}
+    .rv-left.in{opacity:1;transform:translateX(0);}
+    .rv-right{opacity:0;transform:translateX(32px);transition:opacity 0.75s ease,transform 0.75s ease;}
+    .rv-right.in{opacity:1;transform:translateX(0);}
+    .d1{transition-delay:0.1s;}
+    .d2{transition-delay:0.2s;}
+    .d3{transition-delay:0.3s;}
+    .d4{transition-delay:0.4s;}
+    .d5{transition-delay:0.5s;}
+    .d6{transition-delay:0.6s;}
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━
+       RESPONSIVE
+    ━━━━━━━━━━━━━━━━━━━━━━━━ */
+    @media(max-width:960px){
+      .profile-body{grid-template-columns:1fr;}
+      .profile-left{align-items:center;padding:20px;}
+      .profile-right{border-left:none;border-top:1px solid var(--border);padding:24px 20px;}
+      .profile-person{min-height:200px;}
+      .profile-person-icon{font-size:150px;}
+      .two-col{grid-template-columns:1fr;}
+      .contact-grid{grid-template-columns:1fr;}
+      .contact-left{border-right:none;border-bottom:1px solid var(--border);}
+      .contact-right{min-height:260px;padding:36px 28px;}
+      .project-grid{grid-template-columns:repeat(3,1fr);}
+    }
+    @media(max-width:640px){
+      .splash-hero{flex-direction:column;align-items:center;gap:12px;}
+      .splash-title-row{flex-wrap:wrap;justify-content:center;}
+      .splash-title{font-size:clamp(36px,13vw,62px);text-align:center;}
+      .splash-year{font-size:clamp(20px,7vw,32px);}
+      .person-circle{width:138px;height:138px;}
+      .person-icon{font-size:80px;}
+      .nav-inner{padding:0 14px;}
+      .nav-tab{font-size:9px;letter-spacing:0.08em;padding:5px 10px;}
+      .project-inner{padding:24px 16px;}
+      .project-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:100px;}
+      .proj-item.wide{grid-column:span 2;}
+      .contact-right{padding:26px 18px;}
+      .thankyou,.thankyou-year{font-size:clamp(34px,11vw,68px);}
+      .prev-works{padding:14px 16px 22px;}
+      .splash-topbar{padding:20px 20px;}
+      .profile-section-label,.project-inner{padding-left:18px;padding-right:18px;}
+    }
+    @media(max-width:420px){
+      .project-grid{grid-template-columns:repeat(2,1fr);}
+      .nav-tabs{gap:2px;}
+      .nav-tab{padding:5px 7px;font-size:8px;letter-spacing:0.04em;}
+    }
+    /* ── EXIT OVERLAY ── */
+    #exit-overlay{
+      position:fixed;inset:0;z-index:9000;
+      background:rgba(5,10,18,0.92);
+      backdrop-filter:blur(18px);
+      display:flex;align-items:center;justify-content:center;
+      opacity:0;pointer-events:none;
+      transition:opacity 0.35s ease;
+    }
+    #exit-overlay.show{opacity:1;pointer-events:all;}
+    .exit-box{
+      text-align:center;
+      border:1px solid var(--border);
+      background:rgba(11,32,53,0.6);
+      padding:48px 56px;border-radius:8px;
+      box-shadow:0 0 60px rgba(79,195,247,0.07);
+    }
+    .exit-title{
+      font-family:'Cinzel',serif;font-size:22px;font-weight:700;
+      letter-spacing:0.1em;color:var(--off);margin-bottom:10px;
+    }
+    .exit-sub{
+      font-family:'Share Tech Mono',monospace;font-size:11px;
+      letter-spacing:0.16em;color:var(--gray);margin-bottom:32px;
+    }
+    .exit-btns{display:flex;gap:14px;justify-content:center;}
+    .exit-btn{
+      font-family:'Share Tech Mono',monospace;font-size:11px;
+      letter-spacing:0.16em;text-transform:uppercase;
+      padding:11px 28px;border-radius:3px;cursor:pointer;
+      transition:all 0.25s;
+    }
+    .exit-btn-cancel{
+      background:transparent;color:var(--lgray);
+      border:1px solid var(--border);
+    }
+    .exit-btn-cancel:hover{border-color:var(--cyan);color:var(--cyan);}
+    .exit-btn-confirm{
+      background:var(--red);color:var(--white);
+      border:1px solid var(--red);
+    }
+    .exit-btn-confirm:hover{background:var(--red2);border-color:var(--red2);}
+  </style>
+</head>
+<body>
+
+  <!-- Progress bar -->
+  <div id="progress-bar"></div>
+
+  <!-- Scan line -->
+  <div class="scanline"></div>
+
+  <!-- Scroll-to-top -->
+  <div id="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+  <!-- ━━━━ STICKY NAV ━━━━ -->
+  <nav id="sticky-nav">
+    <div class="nav-inner">
+      <span class="brand-mark" onclick="window.scrollTo({top:0,behavior:'smooth'})">Ψ</span>
+      <div class="nav-tabs">
+        <button class="nav-tab active" onclick="goTo('#profile')">PROFIL</button>
+        <button class="nav-tab" onclick="goTo('#project')">PROJECT</button>
+        <button class="nav-tab" onclick="goTo('#contact')">CONTACT PERSON</button>
       </div>
-    </nav>
-    <nav id="hamburger-nav">
-      <div class="logo">Alan M Varghese</div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="menu-links">
-          <li><a href="#about" onclick="toggleMenu()">About</a></li>
-          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-        </div>
+      <div class="scroll-dots">
+        <div class="scroll-dot active" data-target="splash" onclick="goTo('#splash')"></div>
+        <div class="scroll-dot" data-target="profile" onclick="goTo('#profile')"></div>
+        <div class="scroll-dot" data-target="project" onclick="goTo('#project')"></div>
+        <div class="scroll-dot" data-target="contact" onclick="goTo('#contact')"></div>
       </div>
-    </nav>
-    <section id="profile">
-      <div class="section__pic-container">
-        <img src="./assets/profile-pic.png" alt="Alan M Varghese's profile picture"  style="border-radius: 100rem; object-fit: cover; "/>
-      </div>
-      <div class="section__text">
-        <p class="section__text__p1">Hello, I'm</p>
-        <h1 class="title">Alan M Varghese</h1>
-        <p class="section__text__p2">Btech CSBS Student</p>
-        <div class="btn-container">
-          <button class="btn btn-color-1" onclick="location.href='./#contact'">
-            Contact Info
-          </button>
+    </div>
+  </nav>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 1 — SPLASH
+  ━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section id="splash">
+    <div class="splash-glow-a"></div>
+    <div class="splash-glow-b"></div>
+    <div class="splash-topbar">
+      <span class="brand-mark">Ψ</span>
+    </div>
+    <div class="splash-body">
+      <div class="splash-hero">
+        <div class="person-circle">
+          <div class="person-circle-bg"></div>
+          <div class="person-icon">🧑</div>
         </div>
-        <div id="socials-container">
-          <img
-            src="./assets/linkedin.png"
-            alt="LinkedIn profile"
-            class="icon"
-            onclick="location.href='https://linkedin.com/in/alan-m-varghese-396002280/'"
-          />
-          <img
-            src="./assets/github.png"
-            alt="My Github profile"
-            class="icon"
-            onclick="location.href='https://github.com/Alan-m-varghese'"
-          />
-        </div>
-      </div>
-    </section>
-    <section id="about">
-      <p class="section__text__p1">Get To Know More</p>
-      <h1 class="title">About Me</h1>
-      <div class="section-container">
-        <div class="section__pic-container">
-          <img
-            src="./assets/about-pic.png"
-            alt="Profile picture"
-            class="about-pic"
-          />
-        </div>
-        <div class="about-details-container">
-          <div class="about-containers">
-            <div class="details-container">
-              <img
-                src="./assets/experience.png"
-                alt="Experience icon"
-                class="icon"
-              />
-              <h3>Career</h3>
-              <p>Road to:<br />Ethical Hacker ,<br> Web Developer</p>
-            </div>
-            <div class="details-container">
-              <img
-                src="./assets/education.png"
-                alt="Education icon"
-                class="icon"
-              />
-              <h3>Education</h3>
-              <p>B.Tech in Computer Science with Business Systems (undergoing)</p>
-            </div>
-          </div>
-          <div class="text-container">
-            <p>
-              I'm Alan M Varghese , a undergraduate in Btech Computer Science with Business System at Model Engineering College.My interets are in Gaming, Web Development, Ethical Hacking and Coding.I have also shown my talents in Sports (sprint)
-              
-            </p>
+        <div class="splash-title-wrap">
+          <div class="splash-title-row">
+            <div class="splash-title">PORTFOLIO</div>
+            <div class="splash-year">2025</div>
           </div>
         </div>
       </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#career'"
-      />
-    </section>
-    <section id="experience">
-      <p class="section__text__p1">Explore My</p>
-      <h1 class="title">Experience</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <div class="details-container">
-            <h2 class="experience-sub-title">Frontend Development</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>HTML</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>CSS</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>JavaScript</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-            </div>
+      <div class="splash-role">
+        <div class="role-dot"></div>
+        CONTENT CREATOR
+      </div>
+      <div class="splash-menu">
+        <button class="splash-menu-item start-btn" onclick="goTo('#profile')">START</button>
+        <button class="splash-menu-item" onclick="goTo('#profile')">OPTIONS</button>
+        <button class="splash-menu-item" onclick="showExit()">EXIT</button>
+      </div>
+      <div class="scroll-hint">
+        <span>SCROLL</span>
+        <span class="scroll-hint-arrow">↓</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 2 — PROFILE
+  ━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section id="profile">
+    <div class="profile-section-label rv">
+      <div class="section-tag">PROFIL</div>
+      <div class="section-tag-line"></div>
+    </div>
+    <div class="profile-body">
+      <div class="profile-left">
+        <div class="profile-hello rv rv-left">HELLO, I AM</div>
+        <div class="profile-name rv rv-left d1">YUDHA PRADANA</div>
+        <div class="profile-person rv d2">
+          <div class="profile-glow"></div>
+          <div class="profile-person-icon">🧑</div>
+        </div>
+      </div>
+      <div class="profile-right">
+        <div class="sec-h rv">About Me</div>
+        <p class="about-text rv d1">
+          Hi, I'm Yudha Pradana, I'm back making a portfolio at the end of the year. I learned a lot of things from editing from graphic design, video, typography and others about editing. I learned from 2018 autodidated, and I have a little editing skill that I learned from year to year.
+        </p>
+        <div class="sec-h rv d2">Software Skills</div>
+        <div class="skills-row rv d2">
+          <div class="skill-pill">🅿️<span>Procreate</span></div>
+          <div class="skill-pill">🖼️<span>Photoshop</span></div>
+          <div class="skill-pill">📷<span>Lightroom</span></div>
+          <div class="skill-pill">✂️<span>CapCut</span></div>
+          <div class="skill-pill">🌿<span>Canva</span></div>
+          <div class="skill-pill">📱<span>PicsArt</span></div>
+        </div>
+        <div class="two-col rv d3">
+          <div>
+            <div class="sec-h" style="font-size:13px;margin-bottom:9px;">Education</div>
+            <div class="info-sub">◆ 2019 – 2022</div>
+            <div class="info-txt">SMAN 2 HALMAHERA TIMUR</div>
+            <div class="info-txt" style="color:var(--gray);margin-top:3px;">Natural Science</div>
           </div>
-          <div class="details-container">
-            <h2 class="experience-sub-title">Programming Language</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>C++</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Python</h3>
-                  <p>Basic</p>
-                </div>
-              </article> 
-            </div>
+          <div>
+            <div class="sec-h" style="font-size:13px;margin-bottom:9px;">Experience</div>
+            <div class="info-sub" style="color:var(--red2);">TIKTOK CONTENT</div>
+            <div class="info-txt">Get Followers 20,000+ (1 JUL – 29 DES)</div>
+            <div class="info-txt" style="margin-top:3px;color:var(--gray);">Content football cartoon version</div>
+          </div>
+        </div>
+        <div class="sec-h rv d4" style="font-size:13px;margin-bottom:12px;">Language (Communication)</div>
+        <div class="lang-list rv d4">
+          <div class="lang-item">
+            <div class="lang-name">INDONESIA</div>
+            <div class="lang-bar"><div class="lang-fill" data-pct="95"></div></div>
+            <div class="lang-pct">95%</div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-name">JAVA</div>
+            <div class="lang-bar"><div class="lang-fill" data-pct="100"></div></div>
+            <div class="lang-pct">100%</div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-name">ENGLISH</div>
+            <div class="lang-bar"><div class="lang-fill" data-pct="10"></div></div>
+            <div class="lang-pct">10%</div>
           </div>
         </div>
       </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#projects'"
-      />
-    </section>
-    <section id="projects">
-      <p class="section__text__p1">Browse My Recent</p>
-      <h1 class="title">Projects</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-1.png"
-                alt="Project 1"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Delhiveri</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/Alan-m-varghese/delhiveri-frontend.git"
-              >
-                Live Demo
-              </button>
-            </div>
-          </div>
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-2.png"
-                alt="Project 2"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">MSell</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Live Demo
-              </button>
-            </div>
-          </div>
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-2.png"
-                alt="Project 2"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Ai Meeting Assistant</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Live Demo
-              </button>
-            </div>
-          </div>
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-3.png"
-                alt="Project 3"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">SneezeScape</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Live Demo
-              </button>
-            </div>
-          </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 3 — PROJECT
+  ━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section id="project">
+    <div class="profile-section-label rv">
+      <div class="section-tag" style="color:var(--red2);border-color:var(--red2);">PROJECT</div>
+      <div class="section-tag-line" style="background:linear-gradient(to right,var(--red2),transparent);"></div>
+    </div>
+    <div class="project-inner">
+      <div class="project-head rv">
+        <h2>Recap Project 2025</h2>
+        <span class="no-ai-badge">No AI</span>
+      </div>
+      <div class="project-grid">
+        <div class="proj-item tall rv"><div class="proj-inner">🎨</div><div class="proj-overlay"></div><div class="proj-lbl">Graphic Design</div></div>
+        <div class="proj-item wide rv d1"><div class="proj-inner" style="font-size:46px;">⬛</div><div class="proj-overlay"></div><div class="proj-lbl">Motion</div></div>
+        <div class="proj-item rv d2"><div class="proj-inner">📄</div><div class="proj-overlay"></div><div class="proj-lbl">Typography</div></div>
+        <div class="proj-item rv d3"><div class="proj-inner" style="font-size:42px;opacity:0.45;">🕷</div><div class="proj-overlay"></div><div class="proj-lbl">Character</div></div>
+        <div class="proj-item rv d1"><div class="proj-inner">🌊</div><div class="proj-overlay"></div><div class="proj-lbl">Landscape</div></div>
+        <div class="proj-item wide rv d2"><div class="proj-inner" style="font-family:'Rajdhani';font-size:26px;color:rgba(255,255,255,0.35);letter-spacing:0.1em;opacity:1;">TYPESET</div><div class="proj-overlay"></div><div class="proj-lbl">Lettering</div></div>
+        <div class="proj-item rv d3"><div class="proj-inner">🌸</div><div class="proj-overlay"></div><div class="proj-lbl">Portrait</div></div>
+        <div class="proj-item tall rv d4"><div class="proj-inner">🎭</div><div class="proj-overlay"></div><div class="proj-lbl">Poster</div></div>
+        <div class="proj-item rv d4"><div class="proj-inner">🔴</div><div class="proj-overlay"></div><div class="proj-lbl">Artwork</div></div>
+      </div>
+      <div class="proj-logos rv d5">
+        <div class="proj-logo">Ψ</div>
+        <div class="proj-logo" style="font-size:20px;opacity:0.4;">Ψ</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 4 — CONTACT
+  ━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section id="contact">
+    <div class="profile-section-label rv">
+      <div class="section-tag" style="color:var(--cyan);border-color:var(--cyan);">CONTACT PERSON</div>
+      <div class="section-tag-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="contact-label rv">Contact Me</div>
+        <div class="contact-photo rv d1">🧑</div>
+        <div class="contact-name rv d2">YUDHA PRADANA</div>
+        <div class="contact-handle rv d2">21</div>
+        <div class="social-list">
+          <div class="social-item rv d2"><div class="soc-icon ig">📸</div><div class="soc-name">YPZ5EE</div></div>
+          <div class="social-item rv d3"><div class="soc-icon tt">🎵</div><div class="soc-name">YPZ5EE</div></div>
+          <div class="social-item rv d4"><div class="soc-icon yt">▶️</div><div class="soc-name">YUDHA XD</div></div>
+          <div class="social-item rv d5"><div class="soc-icon pi">📌</div><div class="soc-name">KYZ5EE</div></div>
         </div>
       </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#contact'"
-      />
-    </section>
-    <section id="contact">
-      <p class="section__text__p1">Get in Touch</p>
-      <h1 class="title">Contact Me</h1>
-      <div class="contact-info-upper-container">
-        <div class="contact-info-container">
-          <img
-            src="./assets/email.png"
-            alt="Email icon"
-            class="icon contact-icon email-icon"
-          />
-          <p><a href="mailto:alanmvarghese123@gmail.com">Gmail</a></p>
-        </div>
-        <div class="contact-info-container">
-          <img
-            src="./assets/linkedin.png"
-            alt="LinkedIn icon"
-            class="icon contact-icon"
-          />
-          <p><a href="https://linkedin.com/in/alan-m-varghese-396002280/">LinkedIn</a></p>
-        </div>
+      <div class="contact-right">
+        <div class="thankyou rv rv-right">THANK YOU</div>
+        <div class="thankyou-year rv rv-right d1">2025</div>
+        <div class="deco-hand">✍️</div>
+        <div class="film-deco">🎞️</div>
       </div>
-    </section>
-    <footer>
-      <nav>
-        <div class="nav-links-container">
-          <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
-      <p>Copyright &#169; 2023 Alan-m-varghese. All Rights Reserved.</p>
-    </footer>
-    <script src="script.js"></script>
-  </body>
+    </div>
+    <div class="prev-works">
+      <div class="prev-card rv"><div class="prev-img">📁</div><div class="prev-yr">PORTOFOLIO. 2023</div></div>
+      <div class="prev-card rv d1"><div class="prev-img">🎨</div><div class="prev-yr">DESIGN PORTFOLIO 2024</div></div>
+      <div class="prev-card rv d2"><div class="prev-img">🎞️</div><div class="prev-yr">2025</div></div>
+    </div>
+  </section>
+
+  <script>
+    // ━━━━ Smooth scroll helper
+    function goTo(sel) {
+      const el = document.querySelector(sel);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ━━━━ Scroll progress bar
+    const progressBar = document.getElementById('progress-bar');
+    const stickyNav   = document.getElementById('sticky-nav');
+    const toTop       = document.getElementById('totop');
+    const sections    = ['splash','profile','project','contact'];
+    const navTabs     = document.querySelectorAll('.nav-tab');
+    const scrollDots  = document.querySelectorAll('.scroll-dot');
+
+    let langAnimated = false;
+
+    function onScroll() {
+      const scrollTop  = window.scrollY;
+      const docHeight  = document.body.scrollHeight - window.innerHeight;
+      const pct        = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = pct + '%';
+
+      // Sticky nav visibility
+      stickyNav.classList.toggle('visible', scrollTop > 120);
+
+      // Scroll-to-top button
+      toTop.classList.toggle('show', scrollTop > 400);
+
+      // Active section detection
+      let current = 'splash';
+      sections.forEach(id => {
+        const sec = document.getElementById(id);
+        if (sec && sec.getBoundingClientRect().top <= 140) current = id;
+      });
+
+      // Update nav tabs
+      navTabs.forEach((tab, i) => {
+        const targets = ['profile','project','contact'];
+        tab.classList.toggle('active', targets[i] === current);
+      });
+
+      // Update dots
+      scrollDots.forEach(dot => {
+        dot.classList.toggle('active', dot.dataset.target === current);
+      });
+
+      // Animate language bars once
+      if (current === 'profile' && !langAnimated) {
+        langAnimated = true;
+        document.querySelectorAll('.lang-fill').forEach(bar => {
+          bar.style.width = bar.dataset.pct + '%';
+        });
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // init
+
+    // ━━━━ Intersection Observer for scroll-triggered animations
+    const ioOpts = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, ioOpts);
+    document.querySelectorAll('.rv, .rv-left, .rv-right').forEach(el => io.observe(el));
+
+    // ━━━━ Splash entrance animation
+    setTimeout(() => {
+      ['.splash-hero', '.splash-role', '.splash-menu', '.scroll-hint'].forEach((sel, i) => {
+        const el = document.querySelector(sel);
+        if (!el) return;
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(22px)';
+        el.style.transition = `opacity 0.7s ease ${i*0.15}s, transform 0.7s ease ${i*0.15}s`;
+        requestAnimationFrame(() => {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        });
+      });
+    }, 80);
+
+    // ━━━━ Keyboard navigation
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowDown') {
+        const cur = sections.findIndex(id => {
+          const sec = document.getElementById(id);
+          return sec && sec.getBoundingClientRect().top >= -100 && sec.getBoundingClientRect().top <= 150;
+        });
+        const next = sections[Math.min(cur + 1, sections.length - 1)];
+        goTo('#' + next);
+      }
+      if (e.key === 'ArrowUp') {
+        const cur = sections.findIndex(id => {
+          const sec = document.getElementById(id);
+          return sec && sec.getBoundingClientRect().top >= -100 && sec.getBoundingClientRect().top <= 150;
+        });
+        const prev = sections[Math.max(cur - 1, 0)];
+        goTo('#' + prev);
+      }
+      if (e.key === 'Escape') closeExit();
+    });
+
+    // ━━━━ EXIT button overlay
+    function showExit() {
+      document.getElementById('exit-overlay').classList.add('show');
+    }
+    function closeExit() {
+      document.getElementById('exit-overlay').classList.remove('show');
+    }
+
+    // ━━━━ Parallax on splash
+    document.getElementById('splash').addEventListener('mousemove', e => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 14;
+      const y = (e.clientY / window.innerHeight - 0.5) * 8;
+      const circle = document.querySelector('.person-circle');
+      if (circle) circle.style.transform = `translate(${x*0.4}px, ${y*0.3}px)`;
+    });
+  </script>
+  <!-- EXIT OVERLAY -->
+  <div id="exit-overlay" onclick="if(event.target===this)closeExit()">
+    <div class="exit-box">
+      <div class="exit-title">LEAVE PORTFOLIO?</div>
+      <div class="exit-sub">Are you sure you want to exit?</div>
+      <div class="exit-btns">
+        <button class="exit-btn exit-btn-cancel" onclick="closeExit()">CANCEL</button>
+        <button class="exit-btn exit-btn-confirm" onclick="window.close()">EXIT</button>
+      </div>
+    </div>
+  </div>
+
+</body>
 </html>
