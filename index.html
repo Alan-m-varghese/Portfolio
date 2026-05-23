@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alan M Varghese — Creative Developer & Co-Founder</title>
+
+  <!-- SEO Best Practices -->
+  <meta name="description"
+    content="Portfolio of Alan M Varghese, Creative Frontend Developer, Co-Founder at Beehive.in. Custom web experiences, cybersecurity, and digital solutions.">
+  <meta name="keywords"
+    content="Alan M Varghese, Frontend Developer, Beehive.in, Web Developer Portfolio, Minimalist Portfolio, Swiss Design Portfolio, Kerala, India">
+  <meta name="author" content="Alan M Varghese">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Alan M Varghese — Creative Developer & Co-Founder">
+  <meta property="og:description"
+    content="Premium developer portfolio displaying high-performance systems and digital experiences.">
+  <meta property="og:type" content="website">
+
+  <!-- Typography (Syne, Space Mono, Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Custom Magnetic Cursor -->
+  <div id="custom-cursor" class="custom-cursor"></div>
+  <div id="cursor-dot" class="cursor-dot"></div>
+
+  <!-- Interactive Dashed Grid Overlay (Toggleable) -->
+  <div id="grid-overlay" class="grid-overlay">
+    <div class="grid-col"></div>
+    <div class="grid-col"></div>
+    <div class="grid-col"></div>
+    <div class="grid-col"></div>
+  </div>
+
+  <!-- Left Sidebar Indicator (Static & Dynamic Scroll Status) -->
+  <div class="sidebar sidebar-left">
+    <span class="vertical-text text-muted">INDEX</span>
+    <span class="vertical-text text-accent scroll-status" id="active-section-tag">/ 01 HERO</span>
+  </div>
+
+  <!-- Right Sidebar Indicator (Active Dots Navigation) -->
+  <div class="sidebar sidebar-right">
+    <div class="dot-nav">
+      <a href="#hero" class="dot-indicator active" data-section="01" title="Hero"></a>
+      <a href="#manifesto" class="dot-indicator" data-section="02" title="Manifesto"></a>
+      <a href="#impact" class="dot-indicator" data-section="03" title="Impact"></a>
+      <a href="#recent-works" class="dot-indicator" data-section="04" title="Recent Works"></a>
+      <a href="#projects" class="dot-indicator" data-section="05" title="Projects"></a>
+      <a href="#experience" class="dot-indicator" data-section="06" title="Experience"></a>
+      <a href="#contact" class="dot-indicator" data-section="07" title="Contact"></a>
+    </div>
+    <span class="vertical-text text-muted" id="clock-display">03:00 PM</span>
+  </div>
+
+  <!-- Top Global Header -->
+  <header class="global-header">
+    <div class="header-logo">
+      <a href="#hero" class="magnetic-target font-mono">ALAN M VARGHESE <span class="text-muted">/</span> PORTFOLIO</a>
+    </div>
+    <nav class="header-nav font-mono">
+      <a href="#recent-works" class="magnetic-target">WORKS</a>
+      <a href="#projects" class="magnetic-target">PROJECTS</a>
+      <a href="#experience" class="magnetic-target">EXPERIENCE</a>
+      <a href="#contact" class="magnetic-target nav-cta font-mono">GET IN TOUCH</a>
+    </nav>
+    <!-- Mobile Hamburger Menu Button -->
+    <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle Navigation">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+  </header>
+
+  <!-- Full Screen Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+    <nav class="mobile-menu-nav font-mono">
+      <a href="#hero" class="mobile-menu-link">HOME</a>
+      <a href="#recent-works" class="mobile-menu-link">WORKS</a>
+      <a href="#projects" class="mobile-menu-link">PROJECTS</a>
+      <a href="#experience" class="mobile-menu-link">EXPERIENCE</a>
+      <a href="#contact" class="mobile-menu-link mobile-menu-cta">GET IN TOUCH</a>
+    </nav>
+  </div>
+
+  <!-- Main Scroll Container -->
+  <main class="portfolio-container">
+
+    <!-- 01: HERO SECTION -->
+    <section id="hero" class="section section-hero" data-section-name="/ 01 HERO">
+      <div class="section-top font-mono">
+        <span>/ 01 — IDENTITY</span>
+        <span>MEC '27 // B.TECH CSBS</span>
+      </div>
+
+      <div class="hero-body">
+        <h1 class="hero-title">
+          ALAN M<br>VARGHESE
+        </h1>
+        <div class="hero-tagline-container">
+          <p class="hero-tagline">
+            Creative Developer, Co-Founder of Beehive.in & Tech Enthusiast based in Kochi, India. Building custom web
+            ecosystems & secure digital systems behind the surface.
+          </p>
+          <div class="hero-pillars font-mono">
+            <span class="pillar-tag">WEB DEVELOPMENT</span>
+            <span class="pillar-tag">CYBER SECURITY</span>
+            <span class="pillar-tag">DIGITAL MARKETING</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-bottom font-mono">
+        <div class="hero-quicklinks">
+          <a href="https://github.com/alan-m-varghese" target="_blank" class="magnetic-target link-underline">GITHUB
+            ↗</a>
+          <a href="https://www.linkedin.com/in/alan-m-varghese-396002280/" target="_blank"
+            class="magnetic-target link-underline">LINKEDIN ↗</a>
+        </div>
+        <div class="hero-scroll-prompt">
+          <span>SCROLL FOR DETAILS</span>
+          <span class="scroll-arrow">↓</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02: MANIFESTO SECTION (Image 2 representation) -->
+    <section id="manifesto" class="section section-manifesto" data-section-name="/ 02 MANIFESTO">
+      <div class="manifesto-body">
+        <h2 class="manifesto-text">
+          I build the <span class="text-highlight">systems</span> behind the surface.
+        </h2>
+      </div>
+    </section>
+
+    <div class="impact-grid">
+      <!-- Stat Column 1 -->
+      <div class="impact-col">
+        <div class="stat-number-wrapper">
+          <span class="stat-index font-mono">01</span>
+          <div class="stat-big font-mono">25<span class="text-highlight">+</span></div>
+        </div>
+        <div class="stat-label-desc">
+          <div class="stat-label font-mono">PROJECTS SHIPPED</div>
+          <p class="stat-desc">Production web systems, secure custom catalogs, and cloud portals deployed globally.
+          </p>
+        </div>
+      </div>
+      <!-- Stat Column 2 -->
+      <div class="impact-col">
+        <div class="stat-number-wrapper">
+          <span class="stat-index font-mono">02</span>
+          <div class="stat-big font-mono">15+</div>
+        </div>
+        <div class="stat-label-desc">
+          <div class="stat-label font-mono">CLIENTS / COLLABS</div>
+          <p class="stat-desc">Dynamic collaborations across healthcare, e-commerce, and creative branding sectors.
+          </p>
+        </div>
+      </div>
+      <!-- Stat Column 3 -->
+      <div class="impact-col">
+        <div class="stat-number-wrapper">
+          <span class="stat-index font-mono">03</span>
+          <div class="stat-big font-mono">3 <span class="text-highlight font-mono">YR</span></div>
+        </div>
+        <div class="stat-label-desc">
+          <div class="stat-label font-mono">DIGITAL PRACTICE</div>
+          <p class="stat-desc">Engaged in full-stack agency co-founding, ethical hacking, and frontend engineering.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-bottom font-mono">
+      <span>CORE VALUES: MINIMALISM, FUNCTIONALITY, INTEGRITY</span>
+      <span>DELIVERED WITH METICULOUS DETAIL </span>
+      <br>
+    </div>
+    </section>
+
+    <!-- CLIENT LOGO MARQUEE (Between 3rd Section and Recent Works) -->
+    <div class="client-marquee-container">
+      <div class="marquee-track-wrapper">
+        <div class="marquee-track font-mono" id="marquee-track">
+          <!-- First Set -->
+          <span class="marquee-item">LANEWAY</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">EM DESIGNS</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">CLEOPATRA FASHIONS</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">INDIAN DROPSHIPPERS</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">THE DERMATS</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">MAXXO</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">BEEHIVE.IN</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">MELBEURA</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">KICKORA</span>
+          <span class="marquee-dot">●</span>
+          <!-- Duplicate Set for infinite scroll -->
+          <span class="marquee-item">LANEWAY</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">EM DESIGNS</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">CLEOPATRA FASHIONS</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">INDIAN DROPSHIPPERS</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">THE DERMATS</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">MAXXO</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">BEEHIVE.IN</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">MELBEURA</span>
+          <span class="marquee-dot">●</span>
+          <span class="marquee-item">KICKORA</span>
+          <span class="marquee-dot">●</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04: RECENT WORKS SECTION -->
+    <section id="recent-works" class="section section-works" data-section-name="/ 04 RECENT WORKS">
+      <div class="section-top font-mono">
+        <span>
+          <h3 style="color: black;">RECENT WORKS [WEB DESIGN & DEVELOPMENT]</h3>
+        </span>
+      </div>
+
+      <div class="works-list">
+        <!-- Item 1 -->
+        <a href="https://www.laneway.in/" target="_blank" class="work-row" data-preview="laneway">
+          <div class="work-number font-mono">01</div>
+          <div class="work-info">
+            <h3 class="work-title">LANEWAY</h3>
+            <span class="work-tags font-mono">Agency Website / Corporate Web Dev</span>
+          </div>
+          <div class="work-link-icon font-mono">LAUNCH SITE ↗</div>
+        </a>
+
+        <!-- Item 2 -->
+        <a href="https://emdesigns.in/" target="_blank" class="work-row" data-preview="emdesigns">
+          <div class="work-number font-mono">02</div>
+          <div class="work-info">
+            <h3 class="work-title">EM DESIGNS</h3>
+            <span class="work-tags font-mono">Luxury Architecture & Interior Showcase</span>
+          </div>
+          <div class="work-link-icon font-mono">LAUNCH SITE ↗</div>
+        </a>
+
+        <!-- Item 3 -->
+        <a href="https://cleopatrafashions.com/" target="_blank" class="work-row" data-preview="cleopatra">
+          <div class="work-number font-mono">03</div>
+          <div class="work-info">
+            <h3 class="work-title">CLEOPATRA FASHIONS</h3>
+            <span class="work-tags font-mono">Premium Fashion & E-commerce Platform</span>
+          </div>
+          <div class="work-link-icon font-mono">LAUNCH SITE ↗</div>
+        </a>
+
+        <!-- Item 4 -->
+        <a href="https://indiandropshippers.in/" target="_blank" class="work-row" data-preview="dropshippers">
+          <div class="work-number font-mono">04</div>
+          <div class="work-info">
+            <h3 class="work-title">INDIAN DROPSHIPPERS</h3>
+            <span class="work-tags font-mono">B2B E-commerce & Logistics Hub</span>
+          </div>
+          <div class="work-link-icon font-mono">LAUNCH SITE ↗</div>
+        </a>
+
+        <!-- Item 5 -->
+        <a href="https://thedermats.com/" target="_blank" class="work-row" data-preview="dermats">
+          <div class="work-number font-mono">05</div>
+          <div class="work-info">
+            <h3 class="work-title">THE DERMATS</h3>
+            <span class="work-tags font-mono">Clinical Skincare & Patient Ecosystem</span>
+          </div>
+          <div class="work-link-icon font-mono">LAUNCH SITE ↗</div>
+        </a>
+
+        <!-- Item 6 -->
+        <a href="https://alan-m-varghese.github.io/Collab-Visual-Media/" target="_blank" class="work-row"
+          data-preview="collab">
+          <div class="work-number font-mono">06</div>
+          <div class="work-info">
+            <h3 class="work-title">COLLAB VISUAL MEDIA</h3>
+            <span class="work-tags font-mono">Visual Creative Agency & Media Portfolio</span>
+          </div>
+          <div class="work-link-icon font-mono">LAUNCH SITE ↗</div>
+        </a>
+
+        <!-- Item 7 -->
+        <a href="https://maxxo.in/" target="_blank" class="work-row" data-preview="maxxo">
+          <div class="work-number font-mono">07</div>
+          <div class="work-info">
+            <h3 class="work-title">MAXXO</h3>
+            <span class="work-tags font-mono">Dynamic Brand Showcase & Performance Portal</span>
+          </div>
+          <div class="work-link-icon font-mono">LAUNCH SITE ↗</div>
+        </a>
+
+        <!-- Item 8 -->
+        <a href="https://careforhermind.netlify.app" target="_blank" class="work-row" data-preview="caremind">
+          <div class="work-number font-mono">08</div>
+          <div class="work-info">
+            <h3 class="work-title">CARE FOR HER MIND</h3>
+            <span class="work-tags font-mono">Women's Mental Health Advocacy Portal</span>
+          </div>
+          <div class="work-link-icon font-mono">LAUNCH SITE ↗</div>
+        </a>
+
+        <!-- Item 9 -->
+        <a href="https://melbeura.in/" target="_blank" class="work-row" data-preview="melbeura">
+          <div class="work-number font-mono">09</div>
+          <div class="work-info">
+            <h3 class="work-title">MELBEURA</h3>
+            <span class="work-tags font-mono">Artisanal E-commerce & Design Store</span>
+          </div>
+          <div class="work-link-icon font-mono">LAUNCH SITE ↗</div>
+        </a>
+
+        <!-- Item 10 -->
+        <a href="https://kickora.co.in/" target="_blank" class="work-row" data-preview="kickora">
+          <div class="work-number font-mono">10</div>
+          <div class="work-info">
+            <h3 class="work-title">KICKORA</h3>
+            <span class="work-tags font-mono">Sports Apparel Hub & Custom E-shop</span>
+          </div>
+          <div class="work-link-icon font-mono">LAUNCH SITE ↗</div>
+        </a>
+      </div>
+
+      <!-- Floating Hover Preview Element -->
+      <div id="hover-preview" class="hover-preview">
+        <div class="preview-card">
+          <div class="preview-header font-mono">
+            <span class="preview-title" id="p-title">LANEWAY</span>
+            <span class="preview-status text-accent">ACTIVE ●</span>
+          </div>
+          <div class="preview-mockup">
+            <div class="mockup-screen" id="p-screen">
+              <!-- Grid elements representing website interface style -->
+              <div class="mockup-nav"></div>
+              <div class="mockup-hero"></div>
+              <div class="mockup-content"></div>
+            </div>
+          </div>
+          <div class="preview-meta font-mono" id="p-desc">
+            Responsive WordPress agency website built for Laneway India operations.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05: RESUME PROJECTS SECTION -->
+    <section id="projects" class="section section-projects" data-section-name="/ 05 PROJECTS">
+      <div class="section-top font-mono">
+        <h3 style="color: black;">ACADEMIC RESEARCH & PROTOTYPES</h3>
+        <span>SOURCE CODE & DOCUMENTATION</span>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1: QUISHY -->
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-heading-wrapper">
+              <span class="font-mono text-muted">01 / PROTOTYPE</span>
+              <h3 class="project-title-large">QUISHY</h3>
+            </div>
+            <div class="project-meta-top font-mono">
+              <span>TEAM SIZE: 4</span>
+              <span>3 MONTHS</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-description">
+              An intelligent QR code phishing detection system designed to scan QR codes and securely extract embedded
+              URLs. Utilizes mathematical entropy checks and strict keyword matching models to detect malicious URLs
+              before user redirection.
+            </p>
+            <div class="project-details-grid font-mono">
+              <div class="p-detail"><span class="text-muted">ROLE</span> Frontend Developer</div>
+              <div class="p-detail"><span class="text-muted">FOCUS</span> Cyber Security & ML</div>
+            </div>
+          </div>
+          <div class="project-footer">
+            <div class="tech-tags font-mono">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>Python</span>
+              <span>Flask</span>
+              <span>Random Forest</span>
+              <span>Scikit-learn</span>
+              <span>Pandas</span>
+              <span>Regex</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: EduHub -->
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-heading-wrapper">
+              <span class="font-mono text-muted">02 / WEB PLATFORM</span>
+              <h3 class="project-title-large">EduHub</h3>
+            </div>
+            <div class="project-meta-top font-mono">
+              <span>TEAM SIZE: 5</span>
+              <span>3 MONTHS</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-description">
+              A comprehensive online coding education platform engineered for absolute clarity and ease of access.
+              Allows users to register accounts, explore specialized courses across multiple technical domains, enroll
+              in interactive classes, and dynamically track progress.
+            </p>
+            <div class="project-details-grid font-mono">
+              <div class="p-detail"><span class="text-muted">ROLE</span> Frontend Developer</div>
+              <div class="p-detail"><span class="text-muted">FOCUS</span> E-learning & Portal</div>
+            </div>
+          </div>
+          <div class="project-footer">
+            <div class="tech-tags font-mono">
+              <span>React</span>
+              <span>Tailwind CSS</span>
+              <span>Axios</span>
+              <span>Node.js</span>
+              <span>Firebase</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06: WORK EXPERIENCE SECTION -->
+    <section id="experience" class="section section-experience" data-section-name="/ 06 EXPERIENCE">
+      <div class="section-top font-mono">
+        <span>
+          <h3 style="color: black;">PROFESSIONAL TIMELINE</h3>
+        </span>
+      </div>
+
+      <div class="experience-timeline">
+        <!-- Exp Row 1: Beehive.in -->
+        <div class="timeline-row">
+          <div class="timeline-left">
+            <span class="timeline-date font-mono">2025 — PRESENT</span>
+            <span class="timeline-duration font-mono text-muted">4 MONTHS (ACTIVE)</span>
+          </div>
+          <div class="timeline-right">
+            <div class="timeline-header">
+              <h3 class="experience-company">Beehive.in</h3>
+              <span class="experience-role font-mono">CO-FOUNDER</span>
+            </div>
+            <p class="experience-desc">
+              Spearheading front-end and operations at our digital solutions agency. Managing a diverse portfolio of
+              more than 15 clients across sectors, driving massive digital transformations particularly in the
+              healthcare and commercial e-commerce spaces.
+            </p>
+            <ul class="experience-bullets">
+              <li>Architected and implemented a proprietary hospital management system for <strong>Doctor Live</strong>,
+                accelerating operational clinic efficiency by 70%.</li>
+              <li>Engineered customized web structures for 3+ medical institutions with deep medical catalog databases.
+              </li>
+              <li>Deployed highly secure pharmaceutical e-commerce storefronts generating robust conversions of 100+
+                monthly online checkouts.</li>
+            </ul>
+            <div class="experience-tech font-mono">
+              <strong>TECH USED //</strong> HTML, CSS, JavaScript, Python, Shopify, WordPress, React, Flask, Node.js,
+              MySQL, Meta Ads
+            </div>
+          </div>
+        </div>
+
+        <!-- Exp Row 2: Laneway India -->
+        <div class="timeline-row">
+          <div class="timeline-left">
+            <span class="timeline-date font-mono">2025</span>
+            <span class="timeline-duration font-mono text-muted">1 MONTH</span>
+          </div>
+          <div class="timeline-right">
+            <div class="timeline-header">
+              <h3 class="experience-company">Laneway India</h3>
+              <span class="experience-role font-mono">WORDPRESS DEVELOPER</span>
+            </div>
+            <p class="experience-desc">
+              Contributed to high-quality interactive layouts during a focused front-end developer internship. Led
+              design assets and engineered highly responsive frameworks for corporate websites.
+            </p>
+            <ul class="experience-bullets">
+              <li>Pioneered and published 3+ responsive corporate web projects using highly customized WordPress
+                architectures and semantic HTML.</li>
+              <li>Spearheaded an intensive intern onboarding syllabus, instructing comprehensive web design classes for
+                a group of 30+ new developers, improving their onboarding transition time by half.</li>
+            </ul>
+            <div class="experience-tech font-mono">
+              <strong>TECH USED //</strong> WordPress, Elementor, YoastSEO, Rankmath SEO, HTML, CSS
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-bottom font-mono">
+        <span>ACTIVITIES: DESIGN TEAM GDC MEC '24</span>
+        <span>IIT DELHI CYBER SECURITY WORKSHOP ● HACKATHON ZILKATHON-HFT</span>
+      </div>
+    </section>
+
+    <!-- 07: CONTACT SECTION (Image 4 representation) -->
+    <section id="contact" class="section section-contact" data-section-name="/ 07 CONTACT">
+      <div class="section-top font-mono">
+        <span>
+          <h3 style="color: rgb(255, 255, 255);">CONTACT [PREVIEW]</h3>
+        </span>
+      </div>
+
+      <div class="contact-body">
+        <span class="contact-label font-mono">OPEN FOR Q3 2026 / SELECTED PARTNERSHIPS</span>
+        <div class="email-wrapper">
+          <a href="mailto:alanmvarghese123@gmail.com" class="contact-email magnetic-target" id="contact-email">
+            alanmvarghese123@gmail.com<span class="text-highlight">.</span>
+          </a>
+          <span class="copy-tooltip font-mono" id="copy-tooltip">CLICK TO COPY</span>
+        </div>
+      </div>
+
+      <footer class="contact-footer">
+        <div class="footer-col">
+          <span class="footer-label font-mono">STUDIO</span>
+          <span class="footer-value font-mono">Kochi, India</span>
+        </div>
+        <div class="footer-col">
+          <span class="footer-label font-mono">CONNECT</span>
+          <span class="footer-value font-mono">
+            <a href="https://www.linkedin.com/in/alan-m-varghese-396002280/" target="_blank"
+              class="magnetic-target link-underline">LinkedIn</a>
+            <span class="text-muted">/</span>
+            <a href="https://github.com/alan-m-varghese" target="_blank"
+              class="magnetic-target link-underline">GitHub</a>
+          </span>
+        </div>
+        <div class="footer-col">
+          <span class="footer-label font-mono">RESPONSE</span>
+          <span class="footer-value font-mono">≤ 24 hrs</span>
+        </div>
+      </footer>
+    </section>
+
+  </main>
+
+  <!-- JavaScript Controller -->
+  <script src="script.js"></script>
+</body>
+
+</html>
