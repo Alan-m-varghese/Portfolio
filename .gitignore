@@ -1,0 +1,5 @@
+node_modules/
+.DS_Store
+client_errors.log
+.gemini/
+dist/
